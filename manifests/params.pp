@@ -24,7 +24,7 @@ class smartd::params {
   if versioncmp($::smartmontools_version, 5.42) >= 0 {
     $service_name       = 'smartmontools'
   } else {
-    $service_name       = 'smartmond'
+    $service_name       = 'smartd'
   }
 
   case $::osfamily {
