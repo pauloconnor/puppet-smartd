@@ -14,13 +14,18 @@
 #
 class smartd::params {
   $package_name       = 'smartmontools'
-  $service_name       = 'smartd'
   $service_ensure     = 'running'
   $devicescan         = true
   $devicescan_options = undef
   $devices            = []
   $mail_to            = 'root'
   $warning_schedule   = 'daily' # other choices: once, diminishing
+
+  if versioncmp($::smartmontools_version, 5.42) >= 0 {
+    $service_name       = 'smartmontools'
+  } else {
+    $service_name       = 'smartmond'
+  }
 
   case $::osfamily {
     'FreeBSD': {
