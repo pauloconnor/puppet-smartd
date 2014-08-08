@@ -49,7 +49,7 @@ describe 'smartd', :type => :class do
 
       it_behaves_like 'default', {}
       it { should contain_shell_config('start_smartd') }
-      it { should contain_service('smartd').with_ensure('running').with_enable(true) }
+      it { should contain_service('smartmontools').with_ensure('running').with_enable(true) }
       it { should contain_file('/etc/smartd.conf').with_notify('Service[smartmontools]') }
     end
 
@@ -59,7 +59,7 @@ describe 'smartd', :type => :class do
       it_behaves_like 'default', { :config_file => '/usr/local/etc/smartd.conf' }
       it { should_not contain_shell_config('start_smartd') }
       it { should contain_service('smartd').with_ensure('running').with_enable(true) }
-      it { should contain_file('/etc/smartd.conf').with_notify('Service[smartd]') }
+      it { should contain_file('/usr/local/etc/smartd.conf').with_notify('Service[smartd]') }
     end
 
   end
@@ -296,8 +296,8 @@ describe 'smartd', :type => :class do
       end
   
       it do
-        should include_class('smartd')
-        should include_class('smartd::params')
+        should contain_class('smartd')
+        should contain_class('smartd::params')
         should contain_package('smartmontools')
         should contain_service('smartd')
         should contain_file('/etc/smartd.conf')\
