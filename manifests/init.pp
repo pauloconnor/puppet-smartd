@@ -172,6 +172,16 @@ class smartd (
       before  => Service[$service_name],
       require => Package[$package_name],
     }
+
+    # Horrible hack to deal with change service name in Debian
+    service { 'smartd':
+      enable => false,
+      ensure => 'stopped',
+    }
+
+    file { '/etc/init.d/smartd':
+      ensure => 'absent',
+    }
   }
 
 }

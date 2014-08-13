@@ -51,6 +51,7 @@ describe 'smartd', :type => :class do
       it { should contain_shell_config('start_smartd') }
       it { should contain_service('smartmontools').with_ensure('running').with_enable(true) }
       it { should contain_file('/etc/smartd.conf').with_notify('Service[smartmontools]') }
+      it { should contain_service('smartd').with_ensure('stopped').with_enable('false') }
     end
 
     describe 'for osfamily FreeBSD' do
