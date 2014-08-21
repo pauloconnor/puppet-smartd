@@ -168,13 +168,13 @@ class smartd (
     }
 
     # Horrible hack to deal with change service name in Debian
-    service { 'smartd':
-      enable => false,
-      ensure => 'stopped',
-    }
-    #file { '/etc/init.d/smartd':
-    #  ensure => 'absent',
+    #service { 'smartd':
+    #  enable => false,
+    #  ensure => 'stopped',
     #}
+    file { '/etc/init.d/smartd':
+      ensure => 'absent',
+    }
     service { $service_name:
       ensure     => $svc_ensure,
       enable     => $svc_enable,
