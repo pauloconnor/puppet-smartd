@@ -145,8 +145,8 @@ class smartd (
   service { $service_name:
     ensure     => $svc_ensure,
     enable     => $svc_enable,
-    hasrestart => true,
-    hasstatus  => true,
+    hasrestart => false,
+    hasstatus  => false,
   }
 
   Package[$package_name] -> Service[$service_name]
