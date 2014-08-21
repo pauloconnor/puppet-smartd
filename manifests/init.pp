@@ -142,12 +142,6 @@ class smartd (
     ensure => $pkg_ensure,
   }
 
-  service { $service_name:
-    ensure     => $svc_ensure,
-    enable     => $svc_enable,
-    hasrestart => false,
-    hasstatus  => false,
-  }
 
   Package[$package_name] -> Service[$service_name]
 
@@ -181,6 +175,19 @@ class smartd (
 
     file { '/etc/init.d/smartd':
       ensure => 'absent',
+    }
+    service { $service_name:
+      ensure     => $svc_ensure,
+      enable     => $svc_enable,
+      hasrestart => false,
+      hasstatus  => false,
+    }
+  } else {
+    service { $service_name:
+      ensure     => $svc_ensure,
+      enable     => $svc_enable,
+      hasrestart => true,
+      hasstatus  => true,
     }
   }
 
