@@ -172,10 +172,9 @@ class smartd (
       enable => false,
       ensure => 'stopped',
     }
-
-    file { '/etc/init.d/smartd':
-      ensure => 'absent',
-    }
+    #file { '/etc/init.d/smartd':
+    #  ensure => 'absent',
+    #}
     service { $service_name:
       ensure     => $svc_ensure,
       enable     => $svc_enable,
