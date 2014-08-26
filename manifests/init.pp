@@ -180,6 +180,7 @@ class smartd (
       enable     => $svc_enable,
       hasrestart => false,
       hasstatus  => false,
+      status     => '/usr/bin/pgrep smartd',
     }
   } else {
     service { $service_name:
